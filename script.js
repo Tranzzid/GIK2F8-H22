@@ -31,23 +31,17 @@ function handleKeyPress(event) {
 }
 
 function searchBooks(searchTerm) {
-    /*
-    Loopa igenom bookList
-    För varje varv i loopen, ta det aktuella elementet (boken)
-    Jämför titeln med söktermen
-    Om söktermen finns någonstans i titeln, lägg till elementet i ny lista (filteredList)
-    Returnerar filteredList eller anropar renderBookList
-    
-    */
-    const filteredList = [];
-    if (searchTerm.length > 0) {
+    const filteredList = booklist.filter( ({title, author}) => title.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0 ||  author.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0);
+
+
+    /*     if (searchTerm.length > 0) {
         for (let i = 0; i < booklist.length; i++) {
             const title = booklist[i].title.toLowerCase();
             if (title.indexOf(searchTerm.toLowerCase()) >= 0) {
                 filteredList.push(booklist[i]);
             }
         }
-    }
+    } */
     
     renderBookList(filteredList)
 }
