@@ -75,3 +75,5 @@ function renderBookList(bookList) {
         root.insertAdjacentHTML("beforeend", html);
     }
 }
+
+console.log("denna log är ny")
