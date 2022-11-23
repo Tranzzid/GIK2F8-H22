@@ -6,21 +6,7 @@ window.addEventListener("load", () => {
     getAll().then((apiBooks) => (bookList = apiBooks));
 });
 
-const searchInput = null;
-
-const searchField = document.getElementById("searchField");
-searchField.addEventListener("keyup", handleKeyPress);
-
-
-function handleKeyPress(event) {
-    /*
-    Ta emot/läsa av värdet i inputfältet.
-    Sicka värdet till searchBooks.
-    searchBooks returnerar en filtrerad liseta.
-    Filtrerade lisstan skickas till renderBookList
-     */
-    searchBooks(event.target.value);
-}
+searchField.addEventListener("keyup", (event) => searchBooks(event.target.value));
 
 function searchBooks(searchTerm) { 
     const filteredList = bookList.filter( 
