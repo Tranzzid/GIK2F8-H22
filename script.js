@@ -1,18 +1,10 @@
 "use strict";
 /* vad ska vi göra här? */
-const booklist = [
-    {
-        id: 1,
-        author: "Charles Dickens",
-        title: "Oliver Twist"
-    },
-    
-    {
-        id: 2,
-        author: "Hamilton",
-        title: "Kalle-Anka"
-    }
-]
+let bookList = []
+
+window.addEventListener("load", () => {
+    getAll().then((apiBooks) => (bookList = apiBooks));
+});
 
 const searchInput = null;
 
@@ -31,7 +23,7 @@ function handleKeyPress(event) {
 }
 
 function searchBooks(searchTerm) { 
-    const filteredList = booklist.filter( 
+    const filteredList = bookList.filter( 
         ({title, author}) => 
         title.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0 ||  
         author.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0
@@ -57,7 +49,7 @@ function renderBookList(bookList) {
     if (existingElement) {
         root.removeChild(existingElement);
     }
-    if (bookList.length > 0) {
+    if (bookList.length > 0 && searchField.value) {
         root.insertAdjacentHTML("beforeend", BookList(bookList));
     }
 }
