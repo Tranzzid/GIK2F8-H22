@@ -30,10 +30,13 @@ function handleKeyPress(event) {
     searchBooks(event.target.value);
 }
 
-function searchBooks(searchTerm) {
-    const filteredList = booklist.filter( ({title, author}) => title.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0 ||  author.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0);
-
-
+function searchBooks(searchTerm) { 
+    const filteredList = booklist.filter( 
+        ({title, author}) => 
+        title.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0 ||  
+        author.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0
+        );
+    
     /*     if (searchTerm.length > 0) {
         for (let i = 0; i < booklist.length; i++) {
             const title = booklist[i].title.toLowerCase();
@@ -49,25 +52,12 @@ function searchBooks(searchTerm) {
 function renderBookList(bookList) {
     /* Element i HTML-listan visas/döljs beroende på listans innehåll. */
     const existingElement = document.querySelector(".book-list");
+    
+    const root = document.getElementById("root");
     if (existingElement) {
         root.removeChild(existingElement);
     }
     if (bookList.length > 0) {
-        let html = `<ul class = "book-list rounded-md border-2 border-blue-400 bg-white w-full mx-auto">`
-    
-                for(let i = 0; i < bookList.length; i++) {
-                    html += `<li 
-                                class = "book-list_item mb-2 mx-2 last:mb-0 p-3 text-indigo-900 last:border-b-0 border-b border-indigo-700 cursor-pointer">
-                                ${bookList[i].author} - ${bookList[i].title}
-                            </li>`;
-                }
-
-            html += `</ul>`;
-
-        const root = document.getElementById("root");
-
-        root.insertAdjacentHTML("beforeend", html);
+        root.insertAdjacentHTML("beforeend", BookList(bookList));
     }
 }
-
-console.log("denna log är ny")
